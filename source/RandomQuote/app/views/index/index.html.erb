@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class = 'main'>
+		<div class = 'container'>
+			<% filename = 'path/to/database/author-quote.txt' %>
+			<% line_count = `wc -l "#{filename}"`.strip.split(' ')[0].to_i %>	<!-- Finding no. of lines in database -->
+			<% skip_lines = rand(line_count) %>									<!-- Selecting random line of dataset -->
+			<% file = File.open filename %>
+			<% skip_lines.times{ file.gets } %>
+			<% line = file.gets %> <%# gets a line from file after skipping skip_lines number of lines%>
+			<% temp = line.split("\t");
+			 author = temp[0] %>
+			<% quote = temp[1] %>
+			<%= quote+"\n" %><br>
+			<b><%= "- "+author %></b>
+			<% file.close() %><br>
+			<% @bimg, @cite = find_query(quote) %>								<!-- Getting a image url for background -->
+			<% 
+				unless @bimg.to_s.strip.empty?									# Changing dimensions of image(See api doc)
+					@bimg = @bimg.reverse.sub("_640".reverse, "_960".reverse).reverse
+				end
+			%>
+		</div>
+	</div>
+	<footer>
+		<div class="cites">Quote Source: <a href="https://github.com/alvations/Quotables">Quotables</a></div>
+		<div class="cites">Image Source: <a href="<%= @cite %>">Pixabay</a></div>
+	</footer>
+</body>
+<style>
+html {
+	background: url("<%= @bimg %>") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+</style>
+</html>

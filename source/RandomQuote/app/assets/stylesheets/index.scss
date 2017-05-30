@@ -1,0 +1,39 @@
+
+.container {
+	border: 5px solid #f11;
+	border-radius: 15px;
+	padding: 5px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 60%;
+	max-height: 60%;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 30px;
+	text-align: center;
+	background: #fff;
+	overflow: auto;
+	transform: translate(-50%, -50%);	// centers the container div to center of screen
+}
+
+.cites {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 3px;
+	padding-right: 10px;
+	background: black;
+	color: white;
+}
+
+a {
+	color: white;
+}
